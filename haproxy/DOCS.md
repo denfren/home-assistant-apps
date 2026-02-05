@@ -5,7 +5,7 @@ HAProxy as TLS termination for home-assistant and other services.
 ## Usage
 
 - place `fullchain.pem` and `privkey.pem` (names configureable) at `/ssl`. the container merges them so that they are available inside the container at `/data/combined.pem`
-- create your HAProxy configuration at `/addon_configs/42699fc9_haproxy/haproxy.cfg`
+- create your HAProxy configuration at `/addon_configs/b3c03e35_haproxy/haproxy.cfg`
 - configure home-assistant to trust the proxy (see below)
 
 Example configuration:
@@ -63,7 +63,7 @@ The add-on automatically:
 Ensure `trusted_proxies` is configured in your Home Assistant `configuration.yaml`.
 
 ### Connection refused
-Check that your `haproxy.cfg` exists at `/addon_configs/42699fc9_haproxy/haproxy.cfg`.
+Check that your `haproxy.cfg` exists at `/addon_configs/b3c03e35_haproxy/haproxy.cfg`.
 
 ### Certificate errors
 Verify your certificate files exist in `/ssl` and match the configured filenames.
