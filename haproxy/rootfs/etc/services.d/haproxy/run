@@ -1,0 +1,6 @@
+#!/command/with-contenv bashio
+
+CONFIG_FILE="/config/haproxy.cfg"
+PEM_FILE="/data/combined.pem"
+
+exec haproxy -W -f "${CONFIG_FILE}"

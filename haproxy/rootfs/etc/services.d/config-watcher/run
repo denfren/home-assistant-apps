@@ -1,0 +1,25 @@
+#!/command/with-contenv bashio
+
+PEM_FILE="/data/combined.pem"
+CERTFILE=$(bashio::config 'certfile')
+KEYFILE=$(bashio::config 'keyfile')
+
+combine_certs() {
+    cat "/ssl/${CERTFILE}" "/ssl/${KEYFILE}" > "${PEM_FILE}"
+    chmod 600 "${PEM_FILE}"
+}
+
+reload_haproxy() {
+    bashio::log.info "Reloading HAProxy..."
+    killall -USR2 haproxy 2>/dev/null || true
+}
+
+# Initial cert combination
+combine_certs
+
+# Watch /ssl and /config for changes, reload on change
+while inotifywait -e modify,create,delete,move /ssl /config 2>/dev/null; do
+    sleep 2
+    combine_certs
+    reload_haproxy
+done
