@@ -1,5 +1,5 @@
 name: HAProxy
-version: 1.0.0
+version: 1.0.1
 slug: haproxy
 description: HAProxy reverse proxy
 arch:
